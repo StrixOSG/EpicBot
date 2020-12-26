@@ -1,5 +1,6 @@
 require('dotenv').config();
 const epicStoreApi = require('./epicStoreApi');
+const epicStoreFreeGames = require('./epicStoreFreeGames');
 const schedule = require('node-schedule');
 
 const Discord = require('discord.js');
@@ -13,28 +14,21 @@ client.on('message', onDiscordMessage);
 async function onDiscordReady() {
 	console.log('I\'m alive');
 	discordChannel = await client.channels.fetch('162338237380165632');
-	schedule.scheduleJob('51 17 * * *', fetchFreeGames);
+	scheduleJobsToFindFreeGames();
 }
 
-function onDiscordMessage(msg) {
+async function onDiscordMessage(msg) {
 	if(msg.content.includes('Epic good')) {
-		fetchFreeGames();
+		await fetchFreeGames();
 	}
 }
 
-function sendFreeGamesMessage(gameData) {
-	console.log(gameData);
-	if (gameData.length === 0) {
-		return;
-	}
-	gameData.map((game) => {
-		const embed = new Discord.MessageEmbed()
-			.setTitle(`${game.title} - New Free Game  ❤️`)
-			.setImage(game.image)
-			.setDescription(`Offer Ends: ${new Date(game.offerTill).toLocaleString()}`)
-			.setURL(`https://www.epicgames.com/store/en-US/product/${game.productSlug}`);
-		discordChannel.send({ embed: embed });
-	});
+function scheduleJobsToFindFreeGames() {
+	fetchFreeGames();
+	// Attempt to find the new free game at 10:00, 10:01, and 10:05 am
+	schedule.scheduleJob('00 10 * * *', fetchFreeGames);
+	schedule.scheduleJob('01 10 * * *', fetchFreeGames);
+	schedule.scheduleJob('05 10 * * *', fetchFreeGames);
 }
 
 async function fetchFreeGames() {
@@ -43,5 +37,5 @@ async function fetchFreeGames() {
 		console.log(gameData.error);
 		return;
 	}
-	sendFreeGamesMessage(gameData.freeGamesData);
+	await epicStoreFreeGames.sendMessage(gameData.freeGamesData, discordChannel);
 }
