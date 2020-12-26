@@ -13,7 +13,7 @@ client.on('message', onDiscordMessage);
 
 async function onDiscordReady() {
 	console.log('I\'m alive');
-	discordChannel = await client.channels.fetch('162338237380165632');
+	await setDiscordChannel();
 	scheduleJobsToFindFreeGames();
 }
 
@@ -21,6 +21,13 @@ async function onDiscordMessage(msg) {
 	if(msg.content.includes('Epic good')) {
 		await fetchFreeGames();
 	}
+}
+
+async function setDiscordChannel() {
+	try {
+		discordChannel = await client.channels.fetch(process.env.DISCORD_CHANNEL);
+	}
+	catch(error) { console.log(error); }
 }
 
 function scheduleJobsToFindFreeGames() {
