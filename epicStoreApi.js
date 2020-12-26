@@ -1,20 +1,20 @@
-const fetch = require("node-fetch");;
+const fetch = require('node-fetch');
 
 module.exports = {
     async getFreeGames() {
-        const url = "https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions?locale=en-US&country=IN&allowCountries=IN";
-        let freeGamesData = [];
+        const url = 'https://store-site-backend-static.ak.epicgames.com/freeGamesPromotions?locale=en-US&country=IN&allowCountries=IN';
+        const freeGamesData = [];
         let error;
         try {
             const freeGamesResp = await fetch(url);
             const freeGamesJson = await freeGamesResp.json();
             for (let i = 1; i < freeGamesJson.data.Catalog.searchStore.elements.length; i++) {
-                obj = freeGamesJson.data.Catalog.searchStore.elements[i];
-                console.log(obj);
+                const obj = freeGamesJson.data.Catalog.searchStore.elements[i];
                 const imageUrl = obj.keyImages.reduce((acc, cur) => {
-                    if (cur.type === "DieselStoreFrontWide") {
+                    if (cur.type === 'DieselStoreFrontWide') {
                         return cur;
-                    } else {
+                    }
+                    else {
                         return acc;
                     }
                 }).url;
@@ -23,7 +23,7 @@ module.exports = {
                     const game = {
                         title: obj.title,
                         offerTill: new Date(
-                            obj.promotions.promotionalOffers[0].promotionalOffers[0].endDate
+                            obj.promotions.promotionalOffers[0].promotionalOffers[0].endDate,
                         ),
                         image: imageUrl,
                         productSlug: obj.productSlug,
@@ -31,10 +31,11 @@ module.exports = {
                     freeGamesData.push(game);
                 }
             }
-        } catch (e) {
+        }
+        catch (e) {
             error = e;
         }
 
-        return { freeGamesData , error };
+        return { freeGamesData, error };
     },
 };

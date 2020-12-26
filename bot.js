@@ -1,47 +1,47 @@
-require("dotenv").config();
-var epicStoreApi = require("./epicStoreApi");
+require('dotenv').config();
+const epicStoreApi = require('./epicStoreApi');
+const schedule = require('node-schedule');
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
+let discordChannel;
 
 client.login(process.env.BOT_TOKEN);
 client.on('ready', onDiscordReady);
-client.on("message", onDiscordMessage);
+client.on('message', onDiscordMessage);
 
-function onDiscordReady() {
-    console.log('I\'m alive');
+async function onDiscordReady() {
+	console.log('I\'m alive');
+	discordChannel = await client.channels.fetch('162338237380165632');
+	schedule.scheduleJob('51 17 * * *', fetchFreeGames);
 }
 
 function onDiscordMessage(msg) {
-    if(msg.content.includes('Epic good')) {
-        fetchFreeGames(msg.channel);
-    }
+	if(msg.content.includes('Epic good')) {
+		fetchFreeGames();
+	}
 }
 
-const sendFreeGamesMessage = (gameData, channel) => {
-    console.log(gameData);
+function sendFreeGamesMessage(gameData) {
+	console.log(gameData);
 	if (gameData.length === 0) {
-		// The empty game array means the data fetching failed
-		channel.send("The bot is offline maybe a maintainace 🤒");
 		return;
 	}
 	gameData.map((game) => {
-		const embed = {
-			title: game.title,
-			thumbnail: { url: game.image },
-			description: `Offer Ends: ${new Date(game.offerTill).toLocaleString()}`,
-			url: `https://www.epicgames.com/store/en-US/product/${game.productSlug}`,
-        };
-        channel.send('@here New Free Game on Epic Today');
-		channel.send({ embed: embed });
+		const embed = new Discord.MessageEmbed()
+			.setTitle(`${game.title} - New Free Game  ❤️`)
+			.setImage(game.image)
+			.setDescription(`Offer Ends: ${new Date(game.offerTill).toLocaleString()}`)
+			.setURL(`https://www.epicgames.com/store/en-US/product/${game.productSlug}`);
+		discordChannel.send({ embed: embed });
 	});
 }
 
-const fetchFreeGames = async (channel) => {
-	gameData = await epicStoreApi.getFreeGames();
+async function fetchFreeGames() {
+	const gameData = await epicStoreApi.getFreeGames();
 	if (gameData.error) {
-		console.log(data.error);
+		console.log(gameData.error);
 		return;
 	}
-	sendFreeGamesMessage(gameData.freeGamesData, channel);
-};
+	sendFreeGamesMessage(gameData.freeGamesData);
+}
