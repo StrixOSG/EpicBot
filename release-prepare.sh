@@ -26,4 +26,6 @@ else
     fi
 fi
 
+git add .
+git commit
 git push --follow-tags origin master
