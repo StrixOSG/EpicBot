@@ -1,6 +1,6 @@
 require('dotenv').config();
-const epicStoreApi = require('./epicStoreApi');
-const epicStoreFreeGames = require('./epicStoreFreeGames');
+const epicStoreApi = require('./modules/epicStoreApi');
+const epicStoreFreeGames = require('./modules/epicStoreFreeGames');
 const schedule = require('node-schedule');
 
 const Discord = require('discord.js');
