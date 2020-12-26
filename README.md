@@ -5,6 +5,7 @@
 
 ## Feature Explanation
 * Checks for free games everyday at 10:00 am CST
+<img src="https://github.com/StrixOSG/EpicBot/blob/main/images/FreeGame-Example.png" width="350">
 
 ## Setup
 1. Download or fork this repository
