@@ -32,10 +32,10 @@ async function setDiscordChannel() {
 
 function scheduleJobsToFindFreeGames() {
 	fetchFreeGames();
-	// Attempt to find the new free game at 10:00, 10:01, and 10:05 am
-	schedule.scheduleJob('00 10 * * *', fetchFreeGames);
-	schedule.scheduleJob('01 10 * * *', fetchFreeGames);
-	schedule.scheduleJob('05 10 * * *', fetchFreeGames);
+	// Attempt to find the new free game every couple hours, 5 minutes after the hour to give epic a little leeway
+	for(let i = 0; i < 24; i += 2) {
+		schedule.scheduleJob(`05 ${i} * * *`, fetchFreeGames);
+	}
 }
 
 async function fetchFreeGames() {
