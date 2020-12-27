@@ -1,4 +1,9 @@
 const fetch = require('node-fetch');
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+const timezone = require('dayjs/plugin/timezone');
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 module.exports = {
     async getFreeGames() {
@@ -20,11 +25,11 @@ module.exports = {
                 }).url;
 
                 if (obj.promotions.promotionalOffers.length !== 0) {
+                    const endDate = obj.promotions.promotionalOffers[0].promotionalOffers[0].endDate;
+                    const timezoneAdjustedEndDate = dayjs(endDate).tz('America/Regina').utc(true).format('YYYY-MM-DD, HH:mm A');
                     const game = {
                         title: obj.title,
-                        offerTill: new Date(
-                            obj.promotions.promotionalOffers[0].promotionalOffers[0].endDate,
-                        ),
+                        offerTill: timezoneAdjustedEndDate,
                         image: imageUrl,
                         productSlug: obj.productSlug,
                     };

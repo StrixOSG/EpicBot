@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/StrixOSG/EpicBot/compare/v1.1.0...v1.1.1) (2020-12-27)
+
+
+### Bug Fixes
+
+* added dayjs to do time zone conversion and a check is done every couple hours now ([a00be25](https://github.com/StrixOSG/EpicBot/commit/a00be25459150cd1f64e5b31c8c9392146cecd71))
+
 ## 1.1.0 (2020-12-26)
 
 

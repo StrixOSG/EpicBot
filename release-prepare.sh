@@ -26,4 +26,4 @@ else
     fi
 fi
 
-git push --force --follow-tags origin master
+git push --follow-tags origin main

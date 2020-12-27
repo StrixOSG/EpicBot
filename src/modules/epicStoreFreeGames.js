@@ -8,7 +8,7 @@ module.exports = {
 			return;
 		}
 		gameData.map(async (game) => {
-			const offerEndDate = `Offer Ends: ${new Date(game.offerTill).toLocaleString()}`;
+			const offerEndDate = `Offer Ends: ${game.offerTill}`;
 			const newGame = !(await discordUtils.previousEmbedMessagesInclude(offerEndDate, channel));
 			if(newGame) {
 				const embed = new Discord.MessageEmbed()
