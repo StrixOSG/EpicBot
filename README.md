@@ -4,7 +4,7 @@
 * Detects New Free Games 🎮
 
 ## Feature Explanation
-* Checks for free games everyday at 10:00 am and when you first start up the bot
+* Checks for free games every second hour (2:05 am, 4:05am, etc.) and when you first start up the bot
 <img src="https://github.com/StrixOSG/EpicBot/blob/main/images/FreeGame-Example.png" width="350">
 
 ## Setup
