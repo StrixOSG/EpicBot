@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/StrixOSG/EpicBot/compare/v1.1.1...v1.1.2) (2021-01-02)
+
+
+### Bug Fixes
+
+* fixed bug when promotions was empty and removed theme emoji ([3ff73d4](https://github.com/StrixOSG/EpicBot/commit/3ff73d426799360cd48dda1cfc1246d3950b069b))
+
 ### [1.1.1](https://github.com/StrixOSG/EpicBot/compare/v1.1.0...v1.1.1) (2020-12-27)
 
 
