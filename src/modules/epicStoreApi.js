@@ -23,8 +23,7 @@ module.exports = {
                         return acc;
                     }
                 }).url;
-
-                if (obj.promotions.promotionalOffers.length !== 0) {
+                if (obj.promotions && obj.promotions.promotionalOffers.length !== 0) {
                     const endDate = obj.promotions.promotionalOffers[0].promotionalOffers[0].endDate;
                     const timezoneAdjustedEndDate = dayjs(endDate).tz('America/Regina').utc(true).format('YYYY-MM-DD, HH:mm A');
                     const game = {
