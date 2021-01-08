@@ -13,7 +13,7 @@ module.exports = {
         try {
             const freeGamesResp = await fetch(url);
             const freeGamesJson = await freeGamesResp.json();
-            for (let i = 1; i < freeGamesJson.data.Catalog.searchStore.elements.length; i++) {
+            for (let i = 0; i < freeGamesJson.data.Catalog.searchStore.elements.length; i++) {
                 const obj = freeGamesJson.data.Catalog.searchStore.elements[i];
                 const imageUrl = obj.keyImages.reduce((acc, cur) => {
                     if (cur.type === 'DieselStoreFrontWide') {

@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/StrixOSG/EpicBot/compare/v1.1.2...v1.1.3) (2021-01-08)
+
+
+### Bug Fixes
+
+* the winter promotions had changed the data structure slightly, so the loop now starts at 0 ([8c5e3cf](https://github.com/StrixOSG/EpicBot/commit/8c5e3cf31a314eeb456569480db2401439f3152f))
+
 ### [1.1.2](https://github.com/StrixOSG/EpicBot/compare/v1.1.1...v1.1.2) (2021-01-02)
 
 
