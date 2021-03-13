@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/StrixOSG/EpicBot/compare/v1.1.3...v1.1.4) (2021-03-13)
+
+
+### Bug Fixes
+
+* image urls are now always formatted correctly ([79d441c](https://github.com/StrixOSG/EpicBot/commit/79d441c3dbf1eeee8f4e2f07e1ef2ad2248a13e6))
+
 ### [1.1.3](https://github.com/StrixOSG/EpicBot/compare/v1.1.2...v1.1.3) (2021-01-08)
 
 
