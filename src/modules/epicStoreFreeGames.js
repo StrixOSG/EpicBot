@@ -13,7 +13,7 @@ module.exports = {
 			if(newGame) {
 				const embed = new Discord.MessageEmbed()
 					.setTitle(`${game.title} - New Free Game 💸`)
-					.setImage(game.image)
+					.setImage(encodeURI(game.image))
 					.setDescription(offerEndDate)
 					.setURL(`https://www.epicgames.com/store/en-US/product/${game.productSlug}`);
 				channel.send({ embed: embed });
