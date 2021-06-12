@@ -4,7 +4,7 @@ module.exports = {
 		let matchFound = false;
 		messages.forEach(message => {
 			if (message.author.bot && message.embeds.length > 0) {
-				if(message.embeds[0].description === newMessage) {
+				if(message.embeds[0].description === newMessage || message.embeds[0].title === newMessage) {
 					matchFound = true;
 				}
 			}
