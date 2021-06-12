@@ -9,10 +9,12 @@ module.exports = {
 		}
 		gameData.map(async (game) => {
 			const offerEndDate = `Offer Ends: ${game.offerTill}`;
-			const newGame = !(await discordUtils.previousEmbedMessagesInclude(offerEndDate, channel));
+			const title = `${game.title} - New Free Game 💸`;
+			const newGame = !(await discordUtils.previousEmbedMessagesInclude(offerEndDate, channel) && await discordUtils.previousEmbedMessagesInclude(title, channel));
+			console.log(newGame);
 			if(newGame) {
 				const embed = new Discord.MessageEmbed()
-					.setTitle(`${game.title} - New Free Game 💸`)
+					.setTitle(title)
 					.setImage(encodeURI(game.image))
 					.setDescription(offerEndDate)
 					.setURL(`https://www.epicgames.com/store/en-US/product/${game.productSlug}`);

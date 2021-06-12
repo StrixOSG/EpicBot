@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.5](https://github.com/StrixOSG/EpicBot/compare/v1.1.4...v1.1.5) (2021-06-12)
+
+
+### Bug Fixes
+
+* if the game has the same end date but different title, it'll still post ([e9abda8](https://github.com/StrixOSG/EpicBot/commit/e9abda8dd01587d324d2ad444edbc306182f35c5))
+
 ### [1.1.4](https://github.com/StrixOSG/EpicBot/compare/v1.1.3...v1.1.4) (2021-03-13)
 
 
